@@ -13,11 +13,11 @@ const BookmarksPage = () => {
 			if (Array.isArray(savedNews)) {
 				dispatch(setBookmarkedNews(savedNews));
 			} else {
-				console.error('Data di localStorage tidak valid');
+				console.error('Data in localStorage is invalid');
 				dispatch(setBookmarkedNews([]));
 			}
 		} catch (error) {
-			console.error('Gagal memuat data dari localStorage:', error);
+			console.error('Failed to load data from localStorage:', error);
 			dispatch(setBookmarkedNews([]));
 		}
 	}, [dispatch]);

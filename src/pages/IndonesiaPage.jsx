@@ -3,8 +3,8 @@ import NewsCard from '../components/NewsCard/NewsCard';
 import { fetchNewsByKeyword } from '../utils/fetchNews';
 
 const IndonesiaPage = () => {
-	const [news, setNews] = useState([]); 
-	const [loading, setLoading] = useState(true); 
+	const [news, setNews] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -14,7 +14,7 @@ const IndonesiaPage = () => {
 			} catch (error) {
 				console.error('Error fetching news:', error);
 			} finally {
-				setLoading(false); 
+				setLoading(false);
 			}
 		};
 		fetchData();
@@ -26,18 +26,18 @@ const IndonesiaPage = () => {
 		const isAlreadySaved = savedArticles.some((article) => article.web_url === item.web_url);
 
 		if (isAlreadySaved) {
-			alert('Berita sudah disimpan sebelumnya!');
+			alert('News is pre-saved!');
 		} else {
 			localStorage.setItem('savedArticles', JSON.stringify([...savedArticles, item]));
-			alert('Berita berhasil disimpan!');
+			alert('News successfully saved!');
 		}
 	};
 
 	const handleViewDetails = (url) => {
 		if (url) {
-			window.open(url, '_blank'); 
+			window.open(url, '_blank');
 		} else {
-			alert('URL tidak tersedia');
+			alert('URL not available');
 		}
 	};
 

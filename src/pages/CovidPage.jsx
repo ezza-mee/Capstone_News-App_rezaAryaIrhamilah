@@ -18,14 +18,14 @@ const CovidPage = () => {
 	const handleSave = (item) => {
 		const savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
 		localStorage.setItem('savedArticles', JSON.stringify([...savedArticles, item]));
-		alert('Berita disimpan!');
+		alert('News saved!');
 	};
 
 	const handleViewDetails = (url) => {
 		if (url) {
 			window.open(url, '_blank');
 		} else {
-			alert('URL tidak tersedia');
+			alert('URL not available');
 		}
 	};
 
