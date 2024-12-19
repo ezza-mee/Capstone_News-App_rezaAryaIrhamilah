@@ -25,20 +25,16 @@ const Navbar = () => {
 	return (
 		<nav className="bg-blue-500 shadow-md fixed top-0 left-0 w-full z-50">
 			<div className="container mx-auto px-6 py-4 flex items-center justify-between">
-				{/* Logo Brand */}
-				<div className="text-white text-2xl font-bold">ZzaNews</div>
-
-				{/* Hamburger Button */}
+				<Link to="/homePage" className="text-white text-2xl font-bold">
+					ZzaNews
+				</Link>
 				<button className="text-white md:hidden focus:outline-none fixed top-4 right-6 z-50" onClick={toggleMenu}>
 					<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
 					</svg>
 				</button>
-
-				{/* Menu Navigation */}
 				<div className={`${isMenuOpen ? 'block' : 'hidden'} xl:ml-16 xl:w-full xl:flex xl:justify-center md:flex md:items-center md:w-auto`}>
 					<div className="flex flex-col md:flex-row md:items-center md:space-x-4 bg-blue-500 md:bg-transparent fixed md:static top-16 left-0 w-full md:w-auto h-screen md:h-auto overflow-y-auto md:overflow-visible space-y-4 md:space-y-0 px-6 md:px-0 pt-4 md:pt-0">
-						{/* Links */}
 						{['/homePage', '/indonesiaPage', '/programmingPage', '/covidPage', '/bookmarksPage'].map((path, index) => {
 							const labels = ['Home', 'Indonesia', 'Programming', 'Covid-19', 'Bookmarks'];
 							return (
@@ -61,7 +57,6 @@ const Navbar = () => {
 								</Link>
 							);
 						})}
-						{/* Search Bar */}
 						<div className="xl:relative xl:left-40">
 							<Search />
 						</div>
