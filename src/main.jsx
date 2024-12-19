@@ -7,7 +7,7 @@ import LayoutContainer from './container/LayoutContainer';
 import IndonesiaPage from './pages/IndonesiaPage';
 import ErrorPage from './error-page';
 import ProgrammingPage from './pages/ProgrammingPage';
-import CovidPage from './pages/CovidPages';
+import CovidPage from './pages/CovidPage';
 import DetailNewsPage from './pages/DetailNewsPage';
 import BookmarksPage from './pages/BookmarksPage';
 import SearchPage from './pages/SearchPage';

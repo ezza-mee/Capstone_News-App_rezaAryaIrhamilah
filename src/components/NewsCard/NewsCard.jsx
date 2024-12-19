@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeBookmark } from '../../store/reducers/newsReducer';
 import { setNotification } from '../../store/reducers/notificationReducer';
+import { BookmarkIcon, BookmarkSlashIcon, EyeIcon } from '@heroicons/react/24/outline'; 
 
 const NewsCard = ({ item }) => {
 	const dispatch = useDispatch();
 	const [isSaved, setIsSaved] = useState(false);
-	const [isLoaded, setIsLoaded] = useState(false); // State untuk menandakan apakah komponen sudah selesai dimuat
+	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
 		const savedNews = JSON.parse(localStorage.getItem('savedNews')) || [];
 		setIsSaved(savedNews.some((news) => news.web_url === item.web_url));
 
-		// Set isLoaded ke true setelah data selesai dimuat
 		setIsLoaded(true);
 	}, [item.web_url]);
 
@@ -61,18 +61,18 @@ const NewsCard = ({ item }) => {
 
 			{/* Tombol Navigasi dan Simpan/Delete */}
 			<div className="flex justify-between space-x-2 mt-3">
-				<Link to={`/detailNews/${encodeURIComponent(item.web_url)}`} className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
-					Detail News
+				<Link to={`/detailNews/${encodeURIComponent(item.web_url)}`} className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded flex items-center space-x-1">
+					<EyeIcon className="h-5 w-5" /> <span>Detail News</span>
 				</Link>
 
 				{/* Tombol Simpan atau Delete */}
 				{isSaved ? (
-					<button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded" onClick={handleDelete}>
-						Un-save
+					<button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded flex items-center space-x-1" onClick={handleDelete}>
+						<BookmarkSlashIcon className="h-5 w-5" /> <span>Un-save</span>
 					</button>
 				) : (
-					<button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded" onClick={handleSave}>
-						Save
+					<button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded flex items-center space-x-1" onClick={handleSave}>
+						<BookmarkIcon className="h-5 w-5" /> <span>Save</span>
 					</button>
 				)}
 			</div>

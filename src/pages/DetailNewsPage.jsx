@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchNewsByKeyword } from '../utils/fetchNews';
+import { ArrowLeftIcon, LinkIcon } from '@heroicons/react/24/solid';
 
 const DetailNewsPage = () => {
 	const { id } = useParams();
@@ -60,14 +61,16 @@ const DetailNewsPage = () => {
 					<div className="flex justify-between">
 						<div>
 							{/* Tombol Back */}
-							<a href="/homePage" className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+							<a href="/homePage" className="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+								<ArrowLeftIcon className="w-5 h-5 mr-2" />
 								Back
 							</a>
 						</div>
 						<div>
 							{/* Tombol Click Here */}
-							<a href={news?.web_url} target="_blank" rel="noopener noreferrer" className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+							<a href={news?.web_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
 								Click Here
+								<LinkIcon className="w-5 h-5 ml-2" />
 							</a>
 						</div>
 					</div>

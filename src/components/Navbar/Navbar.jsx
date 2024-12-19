@@ -36,32 +36,31 @@ const Navbar = () => {
 				</button>
 
 				{/* Menu Navigation */}
-				{/* Adjust visibility for small screens */}
 				<div className={`${isMenuOpen ? 'block' : 'hidden'} xl:ml-16 xl:w-full xl:flex xl:justify-center md:flex md:items-center md:w-auto`}>
 					<div className="flex flex-col md:flex-row md:items-center md:space-x-4 bg-blue-500 md:bg-transparent fixed md:static top-16 left-0 w-full md:w-auto h-screen md:h-auto overflow-y-auto md:overflow-visible space-y-4 md:space-y-0 px-6 md:px-0 pt-4 md:pt-0">
-						<Link to="/homePage" className={`text-white hover:text-gray-200 ${isActive('/homePage') ? 'font-bold' : ''}`} onClick={toggleMenu}>
-							Home
-						</Link>
-						<Link to="/indonesiaPage" className={`text-white hover:text-gray-200 ${isActive('/indonesiaPage') ? 'font-bold' : ''}`} onClick={toggleMenu}>
-							Indonesia
-						</Link>
-						<Link to="/programmingPage" className={`text-white hover:text-gray-200 ${isActive('/programmingPage') ? 'font-bold' : ''}`} onClick={toggleMenu}>
-							Programming
-						</Link>
-						<Link to="/covidPage" className={`text-white hover:text-gray-200 ${isActive('/covidPage') ? 'font-bold' : ''}`} onClick={toggleMenu}>
-							Covid-19
-						</Link>
-						<Link
-							to="/bookmarksPage"
-							className={`text-white hover:text-gray-200 flex items-center ${isActive('/bookmarksPage') ? 'font-bold' : ''}`}
-							onClick={() => {
-								updateSavedNewsCount();
-								toggleMenu();
-							}}
-						>
-							Bookmarks
-							{savedNewsCount > 0 && <span className="ml-1 bg-red-500 text-white text-xs font-semibold px-2 py-1 mb-3 rounded-full">{savedNewsCount}</span>}
-						</Link>
+						{/* Links */}
+						{['/homePage', '/indonesiaPage', '/programmingPage', '/covidPage', '/bookmarksPage'].map((path, index) => {
+							const labels = ['Home', 'Indonesia', 'Programming', 'Covid-19', 'Bookmarks'];
+							return (
+								<Link
+									key={path}
+									to={path}
+									className={`relative text-white hover:text-gray-200 flex items-center ${isActive(path) ? 'font-bold' : ''}`}
+									onClick={
+										path === '/bookmarksPage'
+											? () => {
+													updateSavedNewsCount();
+													toggleMenu();
+											  }
+											: toggleMenu
+									}
+								>
+									{labels[index]}
+									<div className={`absolute left-0 bottom-0 w-full h-0.5 transition-all duration-300 ${isActive(path) ? 'bg-white' : 'hover:bg-gray-200'}`}></div>
+									{path === '/bookmarksPage' && savedNewsCount > 0 && <span className="ml-1 bg-red-500 text-white text-xs font-semibold px-2 py-1 mb-3 rounded-full">{savedNewsCount}</span>}
+								</Link>
+							);
+						})}
 						{/* Search Bar */}
 						<div className="xl:relative xl:left-40">
 							<Search />
