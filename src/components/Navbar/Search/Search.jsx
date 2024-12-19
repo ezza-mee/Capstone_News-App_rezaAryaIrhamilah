@@ -15,12 +15,14 @@ const Search = () => {
 			}
 
 			navigate(`/news/${search.trim()}`);
-			setSearch(''); 
+			setSearch('');
 		}
 	};
 
 	return (
 		<div className="flex items-center border rounded-lg px-2 py-1 bg-white w-full md:w-auto md:ml-4">
+			{/* Ikon search */}
+			<span className="material-icons text-gray-500 px-2">search</span>
 			<input type="text" className="outline-none px-2 py-1 w-60" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={handleKeyDown} />
 		</div>
 	);

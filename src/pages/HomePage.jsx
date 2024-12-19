@@ -3,13 +3,13 @@ import { fetchNewsByKeyword } from '../utils/fetchNews';
 import NewsCard from '../components/NewsCard/NewsCard';
 
 const HomePage = () => {
-	const [news, setNews] = useState([]); // State untuk menyimpan data berita
+	const [news, setNews] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchRandomNews = async () => {
-			const keywords = ['technology', 'sports', 'business', 'health', 'entertainment']; // Kata kunci acak
-			const randomKeyword = keywords[Math.floor(Math.random() * keywords.length)]; // Pilih kata kunci acak
+			const keywords = ['technology', 'sports', 'business', 'health', 'entertainment']; 
+			const randomKeyword = keywords[Math.floor(Math.random() * keywords.length)]; 
 			const data = await fetchNewsByKeyword(randomKeyword);
 			setNews(data);
 			setLoading(false);
@@ -20,7 +20,7 @@ const HomePage = () => {
 
 	return (
 		<div className="container mx-auto px-4 py-6">
-			<h1 className="text-2xl font-bold mb-4 text-center">Berita Acak Hari Ini</h1>
+			<h1 className="text-2xl font-bold mb-4 text-center">Random News Today</h1>
 			{loading ? (
 				<div className="text-center">Loading...</div>
 			) : news.length > 0 ? (

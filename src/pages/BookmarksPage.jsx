@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import NewsCard from '../components/NewsCard/NewsCard';
-import { setBookmarkedNews, removeBookmark } from '../store/reducers/newsReducer'; 
+import { setBookmarkedNews, removeBookmark } from '../store/reducers/newsReducer';
 
 const BookmarksPage = () => {
 	const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const BookmarksPage = () => {
 		<div className="container mx-auto px-4 py-6">
 			<h1 className="text-2xl font-bold mb-4">Bookmarks</h1>
 			{bookmarkedNews.length === 0 ? (
-				<p className="text-gray-600">Belum ada berita yang disimpan.</p>
+				<p className="text-gray-600">No news saved</p>
 			) : (
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{bookmarkedNews.map((item) => (

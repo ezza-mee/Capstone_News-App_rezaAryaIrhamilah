@@ -45,7 +45,7 @@ const IndonesiaPage = () => {
 
 	return (
 		<div className="container mx-auto px-4 py-6">
-			<h1 className="text-2xl font-bold text-center mb-6">News Indonesia</h1>
+			<h1 className="text-2xl font-bold text-center mb-6">Indonesia News</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{news.length > 0 ? news.map((item, index) => <NewsCard key={index} item={item} onSave={handleSave} onViewDetails={handleViewDetails} />) : <div className="text-center mt-4">No news available</div>}
 			</div>

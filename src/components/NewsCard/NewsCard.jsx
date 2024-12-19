@@ -8,10 +8,14 @@ import { setNotification } from '../../store/reducers/notificationReducer';
 const NewsCard = ({ item }) => {
 	const dispatch = useDispatch();
 	const [isSaved, setIsSaved] = useState(false);
+	const [isLoaded, setIsLoaded] = useState(false); // State untuk menandakan apakah komponen sudah selesai dimuat
 
 	useEffect(() => {
 		const savedNews = JSON.parse(localStorage.getItem('savedNews')) || [];
 		setIsSaved(savedNews.some((news) => news.web_url === item.web_url));
+
+		// Set isLoaded ke true setelah data selesai dimuat
+		setIsLoaded(true);
 	}, [item.web_url]);
 
 	const handleSave = () => {
@@ -34,13 +38,26 @@ const NewsCard = ({ item }) => {
 		dispatch(setNotification(savedNews.length));
 	};
 
+	const formatDate = (dateString) => {
+		if (!dateString) return 'No Date Available';
+		const date = new Date(dateString);
+		return date.toLocaleDateString();
+	};
+
 	return (
-		<div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow">
+		<div className={`bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-all duration-500 transform ${isLoaded ? '-translate-y-100' : 'translate-y-10'} `}>
 			{/* Judul Berita */}
 			<h2 className="text-lg font-semibold mb-2">{item.headline?.main || 'No Title Available'}</h2>
 
 			{/* Deskripsi */}
 			<p className="text-sm text-gray-600 mb-4">{item.abstract || 'No Description Available'}</p>
+
+			{/* Tanggal dan Source */}
+			<div className="text-xs text-gray-500 mb-4">
+				<p>
+					{formatDate(item.pub_date)} | Source: {item.source || 'No Source Available'}
+				</p>
+			</div>
 
 			{/* Tombol Navigasi dan Simpan/Delete */}
 			<div className="flex justify-between space-x-2 mt-3">
@@ -51,7 +68,7 @@ const NewsCard = ({ item }) => {
 				{/* Tombol Simpan atau Delete */}
 				{isSaved ? (
 					<button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded" onClick={handleDelete}>
-						Delete
+						Un-save
 					</button>
 				) : (
 					<button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded" onClick={handleSave}>
@@ -70,6 +87,8 @@ NewsCard.propTypes = {
 		}),
 		abstract: PropTypes.string,
 		web_url: PropTypes.string,
+		pub_date: PropTypes.string,
+		source: PropTypes.string,
 	}).isRequired,
 };
 
