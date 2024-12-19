@@ -80,7 +80,6 @@ const NewsCard = ({ item }) => {
 					)}
 				</div>
 			</div>
-			{/* Komponen Notification */}
 			{notification.visible && <Notification message={notification.message} type={notification.type} onClose={closeNotification} />}
 		</div>
 	);

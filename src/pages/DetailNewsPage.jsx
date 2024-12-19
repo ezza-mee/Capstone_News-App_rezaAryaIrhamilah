@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; 
 import { fetchNewsByKeyword } from '../utils/fetchNews';
 import { ArrowLeftIcon, LinkIcon } from '@heroicons/react/24/solid';
 
@@ -7,6 +7,7 @@ const DetailNewsPage = () => {
 	const { id } = useParams();
 	const [newsDetails, setNewsDetails] = useState([]);
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchNewsDetails = async () => {
@@ -55,10 +56,13 @@ const DetailNewsPage = () => {
 					<p className="text-gray-700 mb-4">{news?.abstract ?? 'Description not available'}</p>
 					<div className="flex justify-between">
 						<div>
-							<a href="/homePage" className="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+							<button
+								onClick={() => navigate(-1)} // Menambahkan fungsi navigate untuk kembali
+								className="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+							>
 								<ArrowLeftIcon className="w-5 h-5 mr-2" />
 								Back
-							</a>
+							</button>
 						</div>
 						<div>
 							<a href={news?.web_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
