@@ -34,7 +34,7 @@ const Navbar = () => {
 					</svg>
 				</button>
 				<div className={`${isMenuOpen ? 'block' : 'hidden'} xl:ml-16 xl:w-full xl:flex xl:justify-center md:flex md:items-center md:w-auto`}>
-					<div className="flex flex-col md:flex-row md:items-center md:space-x-4 bg-blue-500 md:bg-transparent fixed md:static top-16 left-0 w-full md:w-auto h-screen md:h-auto overflow-y-auto md:overflow-visible space-y-4 md:space-y-0 px-6 md:px-0 pt-4 md:pt-0">
+					<div className="flex flex-col md:flex-row md:items-center md:space-x-4 bg-blue-500 md:bg-transparent fixed md:static top-16 left-0 w-full md:w-auto overflow-y-auto md:overflow-visible space-y-4 md:space-y-0 px-6 md:px-0 pt-4 md:pt-0 py-4 xl:py-0">
 						{['/homePage', '/indonesiaPage', '/programmingPage', '/covidPage', '/bookmarksPage'].map((path, index) => {
 							const labels = ['Home', 'Indonesia', 'Programming', 'Covid-19', 'Bookmarks'];
 							return (
